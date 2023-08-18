@@ -81,7 +81,8 @@
 #define shim_powl(x, y)	__builtin_powl(x, y)
 #else
 #if defined(HAVE_POWL)
-#define shim_powl(x, y)	powl(x, y)
+//for qnx use pow, or it will report warning powl has lower than advertised precision
+#define shim_powl(x, y)	pow(x, y)
 #else
 #define shim_powl(x, y)	pow(x, y)
 #endif
