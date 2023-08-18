@@ -573,7 +573,7 @@ stress-ng: config.h $(OBJS)
 	$(PRE_Q)echo "LD $@"
 	$(eval LINK_TOOL := $(shell if [ -n "$(shell grep '^#define HAVE_EIGEN' config.h)" ]; then echo $(CXX); else echo $(CC); fi))
 	$(eval LDFLAGS_EXTRA := $(shell grep CONFIG_LDFLAGS config | sed 's/CONFIG_LDFLAGS +=//' | tr '\n' ' '))
-	$(PRE_V)$(LINK_TOOL) $(OBJS) -lm $(LDFLAGS) $(LDFLAGS_EXTRA) -o $@
+	$(PRE_V)$(LINK_TOOL) $(OBJS) -lm -lsocket $(LDFLAGS) $(LDFLAGS_EXTRA) -o $@
 
 stress-eigen-ops.o: config.h
 	@if grep -q '^#define HAVE_EIGEN' config.h; then \

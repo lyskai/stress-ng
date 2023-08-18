@@ -2352,7 +2352,9 @@ int stress_sighandler(
 	(void)shim_memset(&new_action, 0, sizeof new_action);
 	new_action.sa_handler = handler;
 	(void)sigemptyset(&new_action.sa_mask);
-	new_action.sa_flags = SA_ONSTACK;
+	//qnx_ap/qnx_bins/prebuilt_QOS222/target/qnx7/usr/include/signal.h#169
+	///* #define SA_ONSTACK       0x0008 (not supported yet) */   /* Handle signal on signal stack */
+	new_action.sa_flags = SS_ONSTACK;
 
 	if (sigaction(signum, &new_action, orig_action) < 0) {
 		pr_fail("%s: sigaction %s: errno=%d (%s)\n",

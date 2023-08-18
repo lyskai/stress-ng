@@ -263,7 +263,7 @@ char *stress_find_mount_dev(const char *name)
 	else
 		dev = statbuf.st_dev;
 
-	majdev = makedev(major(dev), 0);
+	majdev = makedev(dev, major(dev), 0);
 
 	dir = opendir("/dev");
 	if (!dir)

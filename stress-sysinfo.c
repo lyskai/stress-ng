@@ -205,7 +205,7 @@ static int stress_sysinfo(const stress_args_t *args)
 			 * Exercise invalid ustat, assuming that major ~0 is
 			 * invalid
 			 */
-			sbuf.st_dev = makedev(~0, stress_mwc32());
+			sbuf.st_dev = makedev(sbuf.st_dev, ~0, stress_mwc32());
 			VOID_RET(int, shim_ustat(sbuf.st_dev, &ubuf));
 #endif
 		}
